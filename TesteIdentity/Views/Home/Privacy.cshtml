@@ -1,0 +1,23 @@
+﻿@using TesteIdentity.Extensions;
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to detail your site's privacy policy.</p>
+
+@{
+    @if (this.IfClaim(claimName: "Produtos", claimValue: "Ler"))
+    {
+        <p> Só se você tiver acesso para este trecho</p>
+    }
+}
+
+<div>
+    @Html.ActionLink("Home", "Index", "Home").ifShow(Context, claimName: "Produtos", claimValue: "Ler")
+</div>
+
+<div>
+    <br />
+    <a href="#" class="btn btn-info @Html.Raw(value: this.ifClaimShow(claimName:"Produtos",claimValue:"Cer"))" >Acessar Informação</a>
+</div>
